@@ -8,6 +8,7 @@ public class FirePower : MonoBehaviour , IDecaySwitch
     [SerializeField] private float pivot;
     [SerializeField] private float totalLightAmount;
     [SerializeField] private float maxFullChargeTime;
+    [SerializeField] private UIBars fireChargeUI;
     private float decayingFactor;
     private float fullChargeTime;
     private DecayState currentChargeState;
@@ -16,6 +17,11 @@ public class FirePower : MonoBehaviour , IDecaySwitch
     {
         fullCharge,
         Decaying,
+    }
+
+    public float GetDecayingFireFactor()
+    {
+        return decayingFactor;
     }
 
     private void Start()
@@ -34,11 +40,11 @@ public class FirePower : MonoBehaviour , IDecaySwitch
                 fullChargeTime -= Time.deltaTime;
                 if (fullChargeTime < 0)
                 {
-                    SwitchLightState(DecayState.Decaying,decayingFactor);
+                    SwitchLightState(DecayState.Decaying);
                 }
                 break;
             case DecayState.Decaying:
-                if (decayingFactor > 0)
+                if (decayingFactor >= 0)
                 {
                     decayingFactor -= 0.00085f;
                     AdjustLight(pivot + (totalLightAmount * decayingFactor));
@@ -49,25 +55,40 @@ public class FirePower : MonoBehaviour , IDecaySwitch
         
     }
 
-    public void AdjustLight(float newValue)
+    private void AdjustLight(float newValue)
     {
+        fireChargeUI.AdjustTheFireBar(decayingFactor);
         fireLightSource.pointLightInnerRadius = newValue;
         fireLightSource.pointLightOuterRadius = newValue + 0.5f;
     }
 
-    public void SwitchLightState(DecayState state,float df)
+    public void SwitchLightState(DecayState state)
+    {
+        currentChargeState = state;
+        fullChargeTime = maxFullChargeTime;
+    }
+
+    public void IncreaseDecayingFactor(float df)
     {
         df = Math.Clamp(df, 0, 1);
         df = Math.Max(decayingFactor, df);
-        if (state == DecayState.fullCharge)
-        {
-            AdjustLight(pivot + (totalLightAmount * df)); // set it to full again
-        }
-        currentChargeState = state;
-        // reset timers 
-        fullChargeTime = maxFullChargeTime;
         decayingFactor = df;
+        AdjustLight(pivot + (totalLightAmount * df));
     }
+
+    public void DecreaseDecayingFactor(float df)
+    {
+        df = Math.Clamp(df, 0, 1);
+        decayingFactor = df;
+        AdjustLight(pivot + (totalLightAmount * df));
+    }
+
+    /*
+    public void AdjustFireBar()
+    {
+        fireChargeUI.AdjustTheFireBar(decayingFactor);
+    }
+    */
     
     
 }
