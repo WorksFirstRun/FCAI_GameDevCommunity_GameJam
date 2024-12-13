@@ -12,7 +12,8 @@ public class FireCharge : MonoBehaviour
     {
         if (other.TryGetComponent<IDecaySwitch>(out IDecaySwitch obj))
         {
-            obj.SwitchLightState(FirePower.DecayState.fullCharge,decayFactor);
+            obj.SwitchLightState(FirePower.DecayState.fullCharge);
+            obj.IncreaseDecayingFactor(decayFactor);
             Destroy(gameObject);
         }
     }

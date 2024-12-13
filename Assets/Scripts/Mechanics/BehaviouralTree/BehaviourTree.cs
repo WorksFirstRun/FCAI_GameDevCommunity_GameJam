@@ -78,6 +78,11 @@ namespace BehaviourTreeNamespace
             }
         }
 
+        public void SetParent(Node parent)
+        {
+            this.parent = parent;
+        }
+
     }
 
 
@@ -86,7 +91,6 @@ namespace BehaviourTreeNamespace
         public override Status Evaluate()
         {
             Status childEvaluateResult = childern[currentChild].Evaluate();
-            /*Debug.Log(childern[currentChild].GetActiveLeafNode());*/ // for Debugging  
             currentChild = (currentChild + 1) % childern.Count;
             return childEvaluateResult;
         }
