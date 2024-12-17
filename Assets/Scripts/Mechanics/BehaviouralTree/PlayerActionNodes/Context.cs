@@ -29,6 +29,8 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
         
         public LayerMask desiredDetectionLayer { get; set; }
         
+        public Vector2 randomPoint_Roam { get; set; }
+        
         public Context(float moveSpeed, Rigidbody2D rigidbody,PlayerAnimation_Visuals playerAnimations, 
             ZoomIn_OutCamera ioCamera,FirePower fp,UIBars uiBars,Transform firePoint, 
             GameObjectRefrence_SO fireBallReference,Transform playerTransform)
@@ -42,6 +44,11 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
             this.firePoint = firePoint;
             this.fireBallReference = fireBallReference;
             this.playerTransform = playerTransform;
+        }
+
+        public Context()
+        {
+            // do nothing 
         }
 
         public void SetEnemyAreas(float chase, float attack, float cast,LayerMask ddL)
