@@ -20,7 +20,8 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
         private void MovementPerformed()
         {
             if (GetActiveLeafNode() is not AttackLeaf
-                && GetActiveLeafNode() is not DashLeaf)
+                && GetActiveLeafNode() is not DashLeaf
+                && GetActiveLeafNode() is not ReleaseSpellLeaf)
             {
                 SetCurrentChild(nodeIndex);
             }

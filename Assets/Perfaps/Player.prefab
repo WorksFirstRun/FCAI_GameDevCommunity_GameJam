@@ -82,6 +82,37 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &6474794180747805565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5707869150325072700}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5707869150325072700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6474794180747805565}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.228, y: -0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7495680472725750981}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6988588474364847143
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +144,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5707869150325072700}
   m_Father: {fileID: 4532600491738324093}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4350265032927031621
@@ -320,6 +352,10 @@ MonoBehaviour:
   inOutCamera: {fileID: 0}
   playerAnimationVisuals: {fileID: 4532899601445160515}
   firePower: {fileID: 46360921624020033}
+  _uiBars: {fileID: 0}
+  firePoint: {fileID: 5707869150325072700}
+  playerTransform: {fileID: 4532600491738324093}
+  fireballReference: {fileID: 11400000, guid: 2f16f69cacdb3624eb4bdfcc55ae6cfa, type: 2}
 --- !u!114 &46360921624020033
 MonoBehaviour:
   m_ObjectHideFlags: 0
