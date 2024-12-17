@@ -9,9 +9,12 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
         private Status chargingStatus;
         private float maxNodeActiveTime;
         private float nodeActiveTime;
+        private float releaseTime;
+        private bool isInstantiated;
         
-        public ReleaseSpellLeaf(Context chargeFireContext,Node p)
+        public ReleaseSpellLeaf(Context chargeFireContext,Node p,float releaseTime)
         {
+            isInstantiated = false;
             releaseSpellLeafRequirments = chargeFireContext;
             chargingStatus = Status.Fail;
             maxNodeActiveTime =
@@ -19,6 +22,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
                     .CastSpell);
             nodeActiveTime = 0;
             parent = p;
+            this.releaseTime = releaseTime * 0.0172f; // some factor that gets the actual time
         }
 
         public override Node StartNode()
@@ -37,10 +41,19 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
             return this;
         }
         
-        
         public override Status Evaluate()
         {
             nodeActiveTime += Time.deltaTime;
+            if (nodeActiveTime >= releaseTime && !isInstantiated)
+            {
+                isInstantiated = true;
+                Transform fb = Object.Instantiate(releaseSpellLeafRequirments.fireBallReference.fireBall,
+                    releaseSpellLeafRequirments.firePoint.position,Quaternion.identity);
+                
+                fb.GetComponent<FireBall>().InitializeTheFireBall(releaseSpellLeafRequirments.GetMouseDirection(),
+                    releaseSpellLeafRequirments.playerTransform);
+            }
+            
             if (nodeActiveTime > maxNodeActiveTime)
             {
                 return Status.Success;
@@ -51,6 +64,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
 
         public override void Reset()
         {
+            isInstantiated = false;
             chargingStatus = Status.Fail;
             nodeActiveTime = 0;
         }

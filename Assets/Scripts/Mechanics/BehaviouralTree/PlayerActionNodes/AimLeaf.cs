@@ -51,6 +51,12 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
                 chargeFireContextRequirements.ui_bars.ShowChargeBar();
             }
         }
+
+        private void AdjustVisualsBasedOnAimDirection()
+        {
+            chargeFireContextRequirements.playerAnimations.AdjustVisualDirection(
+                chargeFireContextRequirements.GetMouseDirection().x);
+        }
         
         private void FireRelease()
         {
@@ -64,6 +70,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
             if (startCounting)
             {
                 chargingTimer += Time.deltaTime;
+                AdjustVisualsBasedOnAimDirection();
                 chargeFireContextRequirements.ui_bars.FillChargeBar(chargingTimer);
             }
             return chargingStatus;
