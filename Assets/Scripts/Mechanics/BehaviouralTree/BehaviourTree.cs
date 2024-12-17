@@ -88,11 +88,23 @@ namespace BehaviourTreeNamespace
 
     public class BehaviourTree : Node
     {
+        private bool firstRun;
         public override Status Evaluate()
         {
+            if (!firstRun)
+            {
+                activeLeafNode = base.StartNode();
+                firstRun = true;
+            }
+            
             Status childEvaluateResult = childern[currentChild].Evaluate();
             currentChild = (currentChild + 1) % childern.Count;
             return childEvaluateResult;
+        }
+
+        public void PrintCurrentActiveNode()
+        {
+            Debug.Log(childern[currentChild].GetActiveLeafNode());
         }
     }
 

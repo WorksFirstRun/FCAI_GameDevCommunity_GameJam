@@ -52,6 +52,7 @@
     <Compile Include="Assets\Scripts\Throwables\FireBall.cs" />
     <Compile Include="Assets\ScriptableObjects\GameObjectRefrence_SO.cs" />
     <Compile Include="Assets\Scripts\UIScripts\UIBars.cs" />
+    <Compile Include="Assets\Scripts\Mechanics\BehavioursAttacher\Enemy.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\BehaviourTree.cs" />
     <Compile Include="Assets\Scripts\CameraAdjustment\ZoomIn_OutCamera.cs" />
     <Compile Include="Assets\Scripts\InputSystem\InputManager.cs" />
