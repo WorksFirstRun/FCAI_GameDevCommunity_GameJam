@@ -9,7 +9,9 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
         
         public ZoomIn_OutCamera InOutCamera { get; set; }
         
-        public PlayerAnimation_Visuals playerAnimations { get; set; }
+        public PlayerAnimation playerAnimation { get; set; }
+        
+        public EnemyAnimationsVisuals EnemyAnimations { get; set; }
         
         public FirePower firePower { get; set; }
         
@@ -31,13 +33,13 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
         
         public Vector2 randomPoint_Roam { get; set; }
         
-        public Context(float moveSpeed, Rigidbody2D rigidbody,PlayerAnimation_Visuals playerAnimations, 
+        public Context(float moveSpeed, Rigidbody2D rigidbody,PlayerAnimation playerAnimation, 
             ZoomIn_OutCamera ioCamera,FirePower fp,UIBars uiBars,Transform firePoint, 
             GameObjectRefrence_SO fireBallReference,Transform playerTransform)
         {
             this.moveSpeed = moveSpeed;
             this.rigidbody = rigidbody;
-            this.playerAnimations = playerAnimations;
+            this.playerAnimation = playerAnimation;
             InOutCamera = ioCamera;
             firePower = fp;
             ui_bars = uiBars;

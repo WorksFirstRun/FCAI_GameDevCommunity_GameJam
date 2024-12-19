@@ -20,7 +20,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
             dashContextRequirments = c;
             this.dashPower = dashPower;
             dashMaxTime =
-                dashContextRequirments.playerAnimations.GetAnimationClipTime(PlayerAnimation_Visuals.Animations.Dash);
+                dashContextRequirments.playerAnimation.GetAnimationClipTime(PlayerAnimations.Dash);
             activeDashTime = 0;
             InputManager.Instance.onDashPerformed += DashPerformed;
         }
@@ -30,7 +30,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
         {
             if (!isActive) return this;
             
-            dashContextRequirments.playerAnimations.SwitchAnimation(PlayerAnimation_Visuals.Animations.Dash);
+            dashContextRequirments.playerAnimation.SwitchAnimation(PlayerAnimations.Dash);
             dashDirection = InputManager.Instance.GetMovementInputDirection_Normalized();
             dashContextRequirments.rigidbody.AddForce(dashDirection * dashPower,ForceMode2D.Impulse);
             return this;

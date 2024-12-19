@@ -46,7 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\PlayerActionNodes\DashLeaf.cs" />
+    <Compile Include="Assets\Scripts\Heal_Health\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\PlayerActionNodes\ReleaseSpellLeaf.cs" />
+    <Compile Include="Assets\Scripts\AnimationScripts\PlayerAnimationAndVisuals.cs" />
+    <Compile Include="Assets\Scripts\AnimationScripts\DarkSamuraiAnimationVisuals.cs" />
+    <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\EnemyAi_ActionNodes\Enemy_AttackActionNode.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehavioursAttacher\Player.cs" />
     <Compile Include="Assets\Scripts\InputSystem\InputMap.cs" />
     <Compile Include="Assets\Scripts\Throwables\FireBall.cs" />
@@ -54,20 +58,24 @@
     <Compile Include="Assets\Scripts\UIScripts\UIBars.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehavioursAttacher\Enemy.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\BehaviourTree.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\EnemysUIBar.cs" />
     <Compile Include="Assets\Scripts\CameraAdjustment\ZoomIn_OutCamera.cs" />
+    <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\EnemyAi_ActionNodes\Enemy_ChaseActionNode.cs" />
     <Compile Include="Assets\Scripts\InputSystem\InputManager.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\EnemyAi_ActionNodes\Enemy_RoamActionNode.cs" />
+    <Compile Include="Assets\Scripts\Heal_Health\BaseHealthScript.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\PlayerActionNodes\AimLeaf.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\PlayerActionNodes\MoveLeaf.cs" />
     <Compile Include="Assets\Scripts\Iterfaces\IDecaySwitch.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\PlayerActionNodes\AttackLeaf.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\EnemyAi_ActionNodes\FallBackNode.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\PlayerActionNodes\Context.cs" />
+    <Compile Include="Assets\Scripts\AnimationScripts\BaseAnimationAndVIsualsScript.cs" />
     <Compile Include="Assets\Scripts\Collectables\FireCharge.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\EnemyAi_ActionNodes\Enemy_IdleActionNode.cs" />
-    <Compile Include="Assets\Scripts\AnimationScripts\PlayerAnimation_Visuals.cs" />
     <Compile Include="Assets\Scripts\Bar Systems\FirePower.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\PlayerActionNodes\IdleLeaf.cs" />
+    <Compile Include="Assets\Scripts\Heal_Health\EnemyHealth.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Tileset\Dungeon Tale\Assets\Materials\INFO.txt" />

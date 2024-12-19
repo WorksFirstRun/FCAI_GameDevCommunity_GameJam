@@ -24,7 +24,7 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
         
         public override Node StartNode()
         {
-            // start idle animation here 
+            idleContextRequirements.EnemyAnimations.SwitchAnimation(EnemyAnimations.Idle);
             idleContextRequirements.playerTransform.gameObject.GetComponent<MonoBehaviour>().StartCoroutine(PickAPoint());
             return this;
         }
@@ -57,6 +57,7 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
                     randomPointPicked = true;
                     idleContextRequirements.randomPoint_Roam = randomPoint;
                 }
+               
                 
                 yield return new WaitForSeconds(0.1f);
             }

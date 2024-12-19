@@ -18,7 +18,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
             releaseSpellLeafRequirments = chargeFireContext;
             chargingStatus = Status.Fail;
             maxNodeActiveTime =
-                releaseSpellLeafRequirments.playerAnimations.GetAnimationClipTime(PlayerAnimation_Visuals.Animations
+                releaseSpellLeafRequirments.playerAnimation.GetAnimationClipTime(PlayerAnimations
                     .CastSpell);
             nodeActiveTime = 0;
             parent = p;
@@ -32,7 +32,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
             {
                 releaseSpellLeafRequirments.firePower.DecreaseDecayingFactor(df - 0.15f);
                 chargingStatus = Status.Running;
-                releaseSpellLeafRequirments.playerAnimations.SwitchAnimation(PlayerAnimation_Visuals.Animations.CastSpell);
+                releaseSpellLeafRequirments.playerAnimation.SwitchAnimation(PlayerAnimations.CastSpell);
             }
             else
             {
