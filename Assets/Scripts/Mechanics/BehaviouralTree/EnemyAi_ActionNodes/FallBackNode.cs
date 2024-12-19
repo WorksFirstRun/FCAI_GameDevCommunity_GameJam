@@ -58,7 +58,7 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
                     chaseArea, fallBackRequirments.desiredDetectionLayer) || 
                 fallBackRequirments.CheckForArea(fallBackRequirments.playerTransform.position,
                     castArea, fallBackRequirments.desiredDetectionLayer) ||
-                fallBackRequirments.CheckForArea(fallBackRequirments.playerTransform.position,
+                fallBackRequirments.CheckForArea(fallBackRequirments.firePoint.position,
                     attackArea, fallBackRequirments.desiredDetectionLayer);
 
             if (whatToDo)
@@ -79,7 +79,7 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
             bool whatToDo = 
                 ! fallBackRequirments.CheckForArea(fallBackRequirments.playerTransform.position,
                     chaseArea, fallBackRequirments.desiredDetectionLayer) || 
-                fallBackRequirments.CheckForArea(fallBackRequirments.playerTransform.position,
+                fallBackRequirments.CheckForArea(fallBackRequirments.firePoint.position,
                     attackArea, fallBackRequirments.desiredDetectionLayer);
 
             if (whatToDo)
@@ -95,12 +95,9 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
         void CheckAttackFallBack()
         {
             float attackArea = fallBackRequirments.attackingArea;
-            float chaseArea = fallBackRequirments.chasingArea;
 
             bool whatToDo = 
-                fallBackRequirments.CheckForArea(fallBackRequirments.playerTransform.position,
-                    chaseArea, fallBackRequirments.desiredDetectionLayer) || 
-                ! fallBackRequirments.CheckForArea(fallBackRequirments.playerTransform.position,
+                ! fallBackRequirments.CheckForArea(fallBackRequirments.firePoint.position,
                     attackArea, fallBackRequirments.desiredDetectionLayer);
 
             if (whatToDo)

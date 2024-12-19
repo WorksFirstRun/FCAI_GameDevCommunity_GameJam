@@ -24,7 +24,9 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
             direction = new Vector2(
                 roamContextRequirements.randomPoint_Roam.x - roamContextRequirements.playerTransform.position.x,
                 roamContextRequirements.randomPoint_Roam.y - roamContextRequirements.playerTransform.position.y).normalized;
+            roamContextRequirements.EnemyAnimations.SwitchAnimation(EnemyAnimations.Run);
             Move();
+            roamContextRequirements.EnemyAnimations.AdjustVisualDirection(direction.x);
             return this;
         }
 

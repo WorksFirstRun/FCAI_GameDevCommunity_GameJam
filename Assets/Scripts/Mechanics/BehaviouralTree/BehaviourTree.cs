@@ -89,8 +89,11 @@ namespace BehaviourTreeNamespace
     public class BehaviourTree : Node
     {
         private bool firstRun;
+        private bool isDisabled;
+        
         public override Status Evaluate()
         {
+            if (isDisabled) return Status.Fail;
             if (!firstRun)
             {
                 activeLeafNode = base.StartNode();
@@ -105,6 +108,12 @@ namespace BehaviourTreeNamespace
         public void PrintCurrentActiveNode()
         {
             Debug.Log(childern[currentChild].GetActiveLeafNode());
+        }
+
+        public void DisableTheTree()
+        {
+            base.Reset();
+            isDisabled = true;
         }
     }
 

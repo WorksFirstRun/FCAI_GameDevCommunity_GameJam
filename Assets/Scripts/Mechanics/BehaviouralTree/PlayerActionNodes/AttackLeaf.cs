@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using BehaviourTreeNamespace;
 using UnityEngine;
 
@@ -6,37 +7,65 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
 {
     public class AttackLeaf : Node
     {
+        private struct AttackInformation
+        {
+            public float attackTiming;
+            public PlayerAnimations animation;
+            public float hitFrame;
+            public Action attack;
+            
+            public AttackInformation(float attackTiming, PlayerAnimations animation, float hitFrame,Action attack)
+            {
+                this.attackTiming = attackTiming;
+                this.animation = animation;
+                this.hitFrame = hitFrame;
+                this.attack = attack;
+            }
+        }
+
         private Context attack1ContextRequirments;
         private int nodeIndex;
         private float nodeMaxActiveTime;
-        private float [] attackTiming;
-        private PlayerAnimation_Visuals.Animations[] _animationsArray;
-        private int currentAttack;
+        private AttackInformation[] attackInformationArray; // Single array for all attack data
+        private Action currentAttack;
+        private int currentAttackNumber;
+        private float currentAttackFrame;
         private float nodeActiveTime;
         private bool isActive;
+        private bool isHit;
 
         private MonoBehaviour CoroutineAccessor;
 
-        public AttackLeaf(Context c, int nodeIndex,MonoBehaviour p)
+        public AttackLeaf(Context c, int nodeIndex, MonoBehaviour p,Action [] attackPoints)
         {
             CoroutineAccessor = p;
             attack1ContextRequirments = c;
-            _animationsArray = new PlayerAnimation_Visuals.Animations[]
+
+            attackInformationArray = new AttackInformation[]
             {
-                PlayerAnimation_Visuals.Animations.Attack1,
-                PlayerAnimation_Visuals.Animations.Attack2,
-                PlayerAnimation_Visuals.Animations.Attack3
+                new AttackInformation(
+                    attack1ContextRequirments.playerAnimation.GetAnimationClipTime(PlayerAnimations.Attack1),
+                    PlayerAnimations.Attack1,
+                    7f / 60f,
+                    attackPoints[0]
+                ),
+                new AttackInformation(
+                    attack1ContextRequirments.playerAnimation.GetAnimationClipTime(PlayerAnimations.Attack2),
+                    PlayerAnimations.Attack2,
+                    7f / 60f,
+                    attackPoints[1]
+                ),
+                new AttackInformation(
+                    attack1ContextRequirments.playerAnimation.GetAnimationClipTime(PlayerAnimations.Attack3),
+                    PlayerAnimations.Attack3,
+                    14f / 60f,
+                    attackPoints[2]
+                )
             };
-            
-             attackTiming = new float[] 
-             {  attack1ContextRequirments.playerAnimations.GetAnimationClipTime(PlayerAnimation_Visuals.Animations.Attack1),
-                 attack1ContextRequirments.playerAnimations.GetAnimationClipTime(PlayerAnimation_Visuals.Animations.Attack2),
-                 attack1ContextRequirments.playerAnimations.GetAnimationClipTime(PlayerAnimation_Visuals.Animations.Attack3)
-             };
-             
+
             this.nodeIndex = nodeIndex;
-            currentAttack = 0;
-            nodeMaxActiveTime = attackTiming[currentAttack];
+            currentAttackNumber = 0;
+            nodeMaxActiveTime = attackInformationArray[currentAttackNumber].attackTiming;
             InputManager.Instance.onAttackPerformed += AttackPerformed;
         }
 
@@ -48,9 +77,11 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
                 CoroutineAccessor.StopAllCoroutines();
                 SetCurrentChild(nodeIndex);
                 isActive = true;
-                nodeMaxActiveTime = attackTiming[currentAttack];
-                attack1ContextRequirments.playerAnimations.SwitchAnimation(_animationsArray[currentAttack]);
-                currentAttack = (currentAttack + 1) % attackTiming.Length;
+                nodeMaxActiveTime = attackInformationArray[currentAttackNumber].attackTiming;
+                attack1ContextRequirments.playerAnimation.SwitchAnimation(attackInformationArray[currentAttackNumber].animation);
+                currentAttackFrame = attackInformationArray[currentAttackNumber].hitFrame;
+                currentAttack = attackInformationArray[currentAttackNumber].attack;
+                currentAttackNumber = (currentAttackNumber + 1) % attackInformationArray.Length;
             }
         }
 
@@ -59,7 +90,6 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
             return this;
         }
 
-
         public override Status Evaluate()
         {
             if (!isActive)
@@ -67,6 +97,11 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
                 return Status.Fail;
             }
             nodeActiveTime += Time.deltaTime;
+            if (nodeActiveTime > currentAttackFrame && !isHit)
+            {
+                currentAttack.Invoke();
+                isHit = true;
+            }
             if (nodeActiveTime > nodeMaxActiveTime)
             {
                 CoroutineAccessor.StartCoroutine(ResetAttack());
@@ -80,12 +115,14 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
         {
             isActive = false;
             nodeActiveTime = 0;
+            isHit = false;
         }
 
         IEnumerator ResetAttack()
         {
             yield return new WaitForSeconds(2f);
-            currentAttack = 0;
+            currentAttackNumber = 0;
+            currentAttack = attackInformationArray[currentAttackNumber].attack;
         }
     }
 }

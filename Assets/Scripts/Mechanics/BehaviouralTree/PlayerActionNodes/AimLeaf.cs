@@ -47,14 +47,14 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
                 chargingTimer = 0;
                 startCounting = true;
                 chargeFireContextRequirements.InOutCamera.ZoomIn();
-                chargeFireContextRequirements.playerAnimations.SwitchAnimation(PlayerAnimation_Visuals.Animations.ChargeSpell);
+                chargeFireContextRequirements.playerAnimation.SwitchAnimation(PlayerAnimations.ChargeSpell);
                 chargeFireContextRequirements.ui_bars.ShowChargeBar();
             }
         }
 
         private void AdjustVisualsBasedOnAimDirection()
         {
-            chargeFireContextRequirements.playerAnimations.AdjustVisualDirection(
+            chargeFireContextRequirements.playerAnimation.AdjustVisualDirection(
                 chargeFireContextRequirements.GetMouseDirection().x);
         }
         
