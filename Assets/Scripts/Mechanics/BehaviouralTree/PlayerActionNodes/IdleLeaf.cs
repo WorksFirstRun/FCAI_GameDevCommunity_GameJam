@@ -10,7 +10,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
 
         public override Node StartNode()
         { 
-            idleContextRequirements.playerAnimation.SwitchAnimation(PlayerAnimations.Idle);
+            idleContextRequirements.animation_VisualsHandler.SwitchAnimation(PlayerAnimations.Idle);
             return this;
         }
 

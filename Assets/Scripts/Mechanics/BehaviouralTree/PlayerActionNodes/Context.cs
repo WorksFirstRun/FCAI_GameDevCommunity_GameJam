@@ -9,9 +9,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
         
         public ZoomIn_OutCamera InOutCamera { get; set; }
         
-        public PlayerAnimation playerAnimation { get; set; }
-        
-        public EnemyAnimationsVisuals EnemyAnimations { get; set; }
+        public BaseAnimationAndVisualsScript animation_VisualsHandler { get; set; }
         
         public FirePower firePower { get; set; }
         
@@ -19,7 +17,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
         
         public Transform firePoint { get; set; }
 
-        public Transform playerTransform;
+        public Transform entityTransform;
         
         public GameObjectRefrence_SO fireBallReference { get; set; }
 
@@ -33,19 +31,21 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
         
         public Vector2 randomPoint_Roam { get; set; }
         
-        public Context(float moveSpeed, Rigidbody2D rigidbody,PlayerAnimation playerAnimation, 
+        public bool isGettingKnockedBack { get; set; }
+        
+        public Context(float moveSpeed, Rigidbody2D rigidbody,PlayerAnimation animationVisualsHandler, 
             ZoomIn_OutCamera ioCamera,FirePower fp,UIBars uiBars,Transform firePoint, 
-            GameObjectRefrence_SO fireBallReference,Transform playerTransform)
+            GameObjectRefrence_SO fireBallReference,Transform entityTransform)
         {
             this.moveSpeed = moveSpeed;
             this.rigidbody = rigidbody;
-            this.playerAnimation = playerAnimation;
+            this.animation_VisualsHandler = animationVisualsHandler;
             InOutCamera = ioCamera;
             firePower = fp;
             ui_bars = uiBars;
             this.firePoint = firePoint;
             this.fireBallReference = fireBallReference;
-            this.playerTransform = playerTransform;
+            this.entityTransform = entityTransform;
         }
 
         public Context()
@@ -67,15 +67,15 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
 
             Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, 0f));
 
-            Vector2 playerPosition = new Vector2(playerTransform.position.x,
-                playerTransform.position.y);
+            Vector2 playerPosition = new Vector2(entityTransform.position.x,
+                entityTransform.position.y);
 
             Vector2 direction = mouseWorldPosition - playerPosition;
 
             return direction;
         }
 
-        public bool CheckForArea(Vector2 position,float area, LayerMask ddl,out Collider2D obj)
+        public static bool CheckForArea(Vector2 position,float area, LayerMask ddl,out Collider2D obj)
         {
             obj = Physics2D.OverlapCircle(position, area, ddl);
 
@@ -84,7 +84,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
             return true;
         }
         
-        public bool CheckForArea(Vector2 position,float area, LayerMask ddl)
+        public static bool CheckForArea(Vector2 position,float area, LayerMask ddl)
         {
             Collider2D obj = Physics2D.OverlapCircle(position, area, ddl);
 

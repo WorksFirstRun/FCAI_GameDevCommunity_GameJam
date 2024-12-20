@@ -18,7 +18,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
             releaseSpellLeafRequirments = chargeFireContext;
             chargingStatus = Status.Fail;
             maxNodeActiveTime =
-                releaseSpellLeafRequirments.playerAnimation.GetAnimationClipTime(PlayerAnimations
+                releaseSpellLeafRequirments.animation_VisualsHandler.GetAnimationClipTime(PlayerAnimations
                     .CastSpell);
             nodeActiveTime = 0;
             parent = p;
@@ -32,7 +32,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
             {
                 releaseSpellLeafRequirments.firePower.DecreaseDecayingFactor(df - 0.15f);
                 chargingStatus = Status.Running;
-                releaseSpellLeafRequirments.playerAnimation.SwitchAnimation(PlayerAnimations.CastSpell);
+                releaseSpellLeafRequirments.animation_VisualsHandler.SwitchAnimation(PlayerAnimations.CastSpell);
             }
             else
             {
@@ -51,7 +51,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
                     releaseSpellLeafRequirments.firePoint.position,Quaternion.identity);
                 
                 fb.GetComponent<FireBall>().InitializeTheFireBall(releaseSpellLeafRequirments.GetMouseDirection(),
-                    releaseSpellLeafRequirments.playerTransform);
+                    releaseSpellLeafRequirments.entityTransform);
             }
             
             if (nodeActiveTime > maxNodeActiveTime)

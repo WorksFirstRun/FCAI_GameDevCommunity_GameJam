@@ -1,21 +1,39 @@
-﻿using Mechanics.BehaviouralTree.PlayerActionNodes;
+﻿using System;
+using System.Collections.Generic;
+using Mechanics.BehaviouralTree.PlayerActionNodes;
 using UnityEngine;
 
 namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
 {
-    public class Enemy_AttackActionNode : Node
+    public class Enemy_AttackActionNode<TAttack> : Node where TAttack : Enum 
     {
         private Context attackContextRequirements;
         private float maxAttackTime;
         private float waitForNextAttack;
-        private float attackTimeCounter;
-        private float attackDamage;
-        private float firstFrameAttackTime;
-        private float secondFrameAttackTime;
+        private float timer;
         private AttackStates attackState;
+        private TAttack idleStateName;
+        private bool isEndOfFrames;
+        
+        private struct AttackInformation
+        {
+            public Action attack;
+            public float[] attackFrames;
+            public TAttack attackName;
 
-        private bool isFirstFrameDone;
-        private bool isSecondFrameDone;
+            public AttackInformation(Action attack, float[] attackFrames,TAttack attackName)
+            {
+                this.attack = attack;
+                this.attackFrames = attackFrames;
+                this.attackName = attackName;
+            }
+        }
+
+        private List<AttackInformation> attacksInfo;
+        private float nextFrameAttackTime;
+        private int currentFrameIndex;
+        private int currentAttackIndex;
+        
         
         private enum AttackStates
         {
@@ -23,92 +41,95 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
             waiting
         }
         
-        public Enemy_AttackActionNode(Context roamContextRequirements, Node parent
-        ,float waitForNextAttack,float attackDamage)
+        public Enemy_AttackActionNode(Context roamContextRequirements, Node parent, float waitForNextAttack,Action[] attack,TAttack[] attacksName,TAttack idleStateName)
         {
-            attackState = AttackStates.attacking;
+            attacksInfo = new List<AttackInformation>();
+            attackState = AttackStates.waiting;
+            this.idleStateName = idleStateName;
+            currentAttackIndex = 0;
             this.parent = parent;
             attackContextRequirements = roamContextRequirements;
             this.waitForNextAttack = waitForNextAttack;
-            maxAttackTime = attackContextRequirements.EnemyAnimations.GetAnimationClipTime(EnemyAnimations.Attack);
-            attackTimeCounter = 0;
-            firstFrameAttackTime = 5f / 60f; 
-            secondFrameAttackTime = 21f / 60f; 
-            this.attackDamage = attackDamage;
+            maxAttackTime = attackContextRequirements.animation_VisualsHandler.GetAnimationClipTime(attacksName[currentAttackIndex]);
+            timer = 0;
+
+            for (int i = 0 ; i < attacksName.Length ; i++)
+            {
+                attacksInfo.Add(new AttackInformation
+                ( 
+                    attack[i],
+                    attackContextRequirements.animation_VisualsHandler.GetAnimationFrames(attacksName[i]),
+                    attacksName[i]
+                ));
+            }
+            
+
+            nextFrameAttackTime = attacksInfo[currentAttackIndex].attackFrames[0];
+            currentFrameIndex = 0;
         }
 
         public override Node StartNode()
         {
-            attackContextRequirements.EnemyAnimations.SwitchAnimation(EnemyAnimations.Attack);
+            attackContextRequirements.animation_VisualsHandler.SwitchAnimation(idleStateName);
             return this;
         }
 
         public override Status Evaluate()
         {
-            attackTimeCounter += Time.deltaTime;
+            timer += Time.deltaTime;
+
             switch (attackState)
             {
                 case AttackStates.waiting:
-                    if (attackTimeCounter > waitForNextAttack)
+                    if (timer > waitForNextAttack)
                     {
-                        attackTimeCounter = 0;
+                        currentAttackIndex = (currentAttackIndex + 1) % attacksInfo.Count;
+                        timer = 0;
                         attackState = AttackStates.attacking;
-                        attackContextRequirements.EnemyAnimations.SwitchAnimation(EnemyAnimations.Attack);
+                        attackContextRequirements.animation_VisualsHandler.SwitchAnimation(attacksInfo[currentAttackIndex].attackName);
+                        nextFrameAttackTime = attacksInfo[currentAttackIndex].attackFrames[0]; 
+                        currentFrameIndex = 0;
+                        isEndOfFrames = false;
+                        maxAttackTime = attackContextRequirements.animation_VisualsHandler.GetAnimationClipTime(attacksInfo[currentAttackIndex].attackName);
                     }
                     break;
+
                 case AttackStates.attacking:
-                    
-                    if (attackTimeCounter > maxAttackTime)
+                    if (timer > maxAttackTime)
                     {
-                        attackContextRequirements.EnemyAnimations.SwitchAnimation(EnemyAnimations.Idle);
+                        attackContextRequirements.animation_VisualsHandler.SwitchAnimation(idleStateName);
                         attackState = AttackStates.waiting;
-                        isSecondFrameDone = false;
-                        isFirstFrameDone = false;
-                        attackTimeCounter = 0;
+                        timer = 0;
+                        currentFrameIndex = 0;
                     }
-                    
-                    else if (attackTimeCounter > secondFrameAttackTime && !isSecondFrameDone)
+                    else if (timer > nextFrameAttackTime && !isEndOfFrames)
                     {
-                        isSecondFrameDone = true;
-                        GiveDamage();
-                    }
-                    
-                    else if (attackTimeCounter > firstFrameAttackTime && !isFirstFrameDone)
-                    {
-                        isFirstFrameDone = true;
-                        GiveDamage();
+                        attacksInfo[currentAttackIndex].attack?.Invoke();
+                       
+                        currentFrameIndex++;
+                        if (currentFrameIndex < attacksInfo[currentAttackIndex].attackFrames.Length)
+                        {
+                            nextFrameAttackTime = attacksInfo[currentAttackIndex].attackFrames[currentFrameIndex];
+                        }
+                        else
+                        {
+                            isEndOfFrames = true;
+                        }
                     }
                     break;
             }
-           
-            
+
             return Status.Running;
         }
 
         public override void Reset()
         {
-            attackTimeCounter = 0;
-            isFirstFrameDone = false;
-            isSecondFrameDone = false;
-            attackState = AttackStates.attacking;
+            timer = 0;
+            currentFrameIndex = 0;
+            isEndOfFrames = false;
+            currentAttackIndex = 0;
+            attackState = AttackStates.waiting;
         }
-
-        private void GiveDamage()
-        {
-            float attackArea = attackContextRequirements.attackingArea;
-            attackContextRequirements.CheckForArea(attackContextRequirements.firePoint.position, attackArea, attackContextRequirements
-                .desiredDetectionLayer
-                , out Collider2D obj);
-
-            if (obj.TryGetComponent<BaseHealthScript>(out BaseHealthScript objHealth))
-            {
-                objHealth.TakeDamage(attackDamage);
-            }
-            else
-            {
-                Debug.LogError("Something went wrong, can't find the player");
-            }
-            
-        }
+        
     }
 }
