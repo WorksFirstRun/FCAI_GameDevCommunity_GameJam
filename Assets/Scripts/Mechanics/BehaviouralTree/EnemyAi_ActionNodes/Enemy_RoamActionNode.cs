@@ -1,32 +1,36 @@
 ﻿using Mechanics.BehaviouralTree.PlayerActionNodes;
 using UnityEngine;
 using System.Collections;
+using System;
 
 namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
 {
-    public class Enemy_RoamActionNode : Node
+    public class Enemy_RoamActionNode<TRoam> : Node where TRoam : Enum
     {
         private Context roamContextRequirements;
         private Vector2 direction;
         private float pointDistanceThreshHold;
         private bool isReached;
+        private TRoam roamStateName;
         
-        public Enemy_RoamActionNode(Context roamContextRequirements, Node parent)
+        
+        public Enemy_RoamActionNode(Context roamContextRequirements, Node parent,TRoam roamStateName)
         {
             this.parent = parent;
             pointDistanceThreshHold = 1.2f;
             this.roamContextRequirements = roamContextRequirements;
+            this.roamStateName = roamStateName;
         }
 
         public override Node StartNode()
         {
             // start running animation here
             direction = new Vector2(
-                roamContextRequirements.randomPoint_Roam.x - roamContextRequirements.playerTransform.position.x,
-                roamContextRequirements.randomPoint_Roam.y - roamContextRequirements.playerTransform.position.y).normalized;
-            roamContextRequirements.EnemyAnimations.SwitchAnimation(EnemyAnimations.Run);
+                roamContextRequirements.randomPoint_Roam.x - roamContextRequirements.entityTransform.position.x,
+                roamContextRequirements.randomPoint_Roam.y - roamContextRequirements.entityTransform.position.y).normalized;
+            roamContextRequirements.animation_VisualsHandler.SwitchAnimation(roamStateName);
             Move();
-            roamContextRequirements.EnemyAnimations.AdjustVisualDirection(direction.x);
+            roamContextRequirements.animation_VisualsHandler.AdjustVisualDirection(direction.x);
             return this;
         }
 
@@ -52,9 +56,9 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
         private void CheckIfReached()
         {
             float pointDistance = Mathf.Sqrt(Mathf.Pow(roamContextRequirements.randomPoint_Roam.x - 
-                                                       roamContextRequirements.playerTransform.position.x, 2) 
+                                                       roamContextRequirements.entityTransform.position.x, 2) 
                                              + Mathf.Pow(roamContextRequirements.randomPoint_Roam.y
-                                                         - roamContextRequirements.playerTransform.position.y, 2));
+                                                         - roamContextRequirements.entityTransform.position.y, 2));
             if (pointDistance < pointDistanceThreshHold)
             {
                 isReached = true;

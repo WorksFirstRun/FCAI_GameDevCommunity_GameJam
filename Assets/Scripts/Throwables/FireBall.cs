@@ -8,7 +8,18 @@ public class FireBall : MonoBehaviour
     [SerializeField] private float destroyDelayTime;
     [SerializeField] private Animator _animator;
     [SerializeField] private float fireBallSpeed;
+    [SerializeField] private float damageAmount;
+    [SerializeField] private bool decreaseTheFirePower;
+    [SerializeField] private collidedTags desiredDamageableObject;
     private Transform caster;
+    private bool isDamaged;
+    
+
+    private enum collidedTags
+    {
+        Enemy,
+        Player
+    }
     
     public void InitializeTheFireBall(Vector2 direction,Transform casteTransform)
     {
@@ -22,10 +33,28 @@ public class FireBall : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform == caster) return;
-        // don't forget to check of the health abstract class here and give damage to the object
+        if (other.transform == caster || isDamaged) return;
+        if (other.CompareTag(desiredDamageableObject.ToString()))
+        {
+            isDamaged = true;
+            if (other.TryGetComponent(out BaseHealthScript otherHealth))
+            {
+                otherHealth.TakeDamage(damageAmount);
+            }
+    
+            if (decreaseTheFirePower)
+            {
+                if (other.TryGetComponent(out FirePower otherFireCharge))
+                {
+                    float df = otherFireCharge.GetDecayingFireFactor();
+                    otherFireCharge.DecreaseDecayingFactor(df - 0.20f);
+                }
+            }
+            
+        }
+        
         rb.velocity = Vector2.zero;
-        _animator.SetTrigger(EXPLOSION);
+        _animator.Play(EXPLOSION,0); // don't try this at home
         Destroy(gameObject,destroyDelayTime);
     }
 }

@@ -1,25 +1,27 @@
-﻿using Mechanics.BehaviouralTree.PlayerActionNodes;
+﻿using System;
+using Mechanics.BehaviouralTree.PlayerActionNodes;
 using UnityEngine;
 using System.Collections;
 
 namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
 {
-    public class Enemy_ChaseActionNode : Node
+    public class Enemy_ChaseActionNode<TChase> : Node where TChase : Enum
     {
         private Context chaseContextRequirements;
         private Vector2 direction;
         private Transform playerTrasform;
+        private TChase chaseStateName;
         
-        public Enemy_ChaseActionNode(Context chaseContextRequirements, Node parent)
+        public Enemy_ChaseActionNode(Context chaseContextRequirements, Node parent,TChase chaseStateName)
         {
             this.parent = parent;
             this.chaseContextRequirements = chaseContextRequirements;
-            
+            this.chaseStateName = chaseStateName;
         }
 
         public override Node StartNode()
         {
-            chaseContextRequirements.EnemyAnimations.SwitchAnimation(EnemyAnimations.Run);
+            chaseContextRequirements.animation_VisualsHandler.SwitchAnimation(chaseStateName);
             GetPlayerTransformReference();
             return this;
         }
@@ -28,7 +30,7 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
         {
             AdjustChaseDirection();
             Move();
-            chaseContextRequirements.EnemyAnimations.AdjustVisualDirection(direction.x);
+            chaseContextRequirements.animation_VisualsHandler.AdjustVisualDirection(direction.x);
             return Status.Running;
         }
 
@@ -39,9 +41,9 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
 
         private void GetPlayerTransformReference()
         {
-            float attackArea = chaseContextRequirements.chasingArea;
-            bool canTrack = chaseContextRequirements.CheckForArea(chaseContextRequirements.playerTransform.position, 
-                attackArea, chaseContextRequirements.desiredDetectionLayer, out Collider2D obj);
+            float chasingArea = chaseContextRequirements.chasingArea;
+            bool canTrack = Context.CheckForArea(chaseContextRequirements.entityTransform.position, 
+                chasingArea, chaseContextRequirements.desiredDetectionLayer, out Collider2D obj);
             
             if (!canTrack) return;
             

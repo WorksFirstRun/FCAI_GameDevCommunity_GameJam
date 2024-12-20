@@ -29,7 +29,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
 
         public override Node StartNode()
         {
-            moveContextRequirements.playerAnimation.SwitchAnimation(PlayerAnimations.Run);
+            moveContextRequirements.animation_VisualsHandler.SwitchAnimation(PlayerAnimations.Run);
             return this;
         }
 
@@ -40,7 +40,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
                 return Status.Fail;
             }
             MovePlayer(RefreshMovementDirection());
-            moveContextRequirements.playerAnimation.AdjustVisualDirection(RefreshMovementDirection().x);
+            moveContextRequirements.animation_VisualsHandler.AdjustVisualDirection(RefreshMovementDirection().x);
             return Status.Running;
         }
         

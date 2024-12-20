@@ -1,0 +1,206 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &305814534066199428
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1266356435285193301, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_text
+      value: WaterWitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638040260987418841, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.058
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638040260987418841, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.578
+      objectReference: {fileID: 0}
+    - target: {fileID: 3894424603166769929, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3894424603166769929, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221287253963830674, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: maxHealth
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221287253963830674, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: _enemyLogic
+      value: 
+      objectReference: {fileID: 4996283307294126043}
+    - target: {fileID: 4221287253963830674, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: enemyAnimationsVisuals
+      value: 
+      objectReference: {fileID: 7428346572333042838}
+    - target: {fileID: 4265199644144990849, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6b1a81d5c15521146856de48090984b4, type: 2}
+    - target: {fileID: 8108803293858492572, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 774098839, guid: 3d3bb831ea9921949bb13b99f17c4b94, type: 3}
+    - target: {fileID: 8704050151867801961, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704050151867801961, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704050151867801961, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704050151867801961, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704050151867801961, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704050151867801961, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704050151867801961, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704050151867801961, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704050151867801961, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704050151867801961, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8846285717938027555, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: m_Name
+      value: WaterWitch
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2569002794843139411, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+    - {fileID: 6691081639960107619, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8846285717938027555, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4996283307294126043}
+    - targetCorrespondingSourceObject: {fileID: 5602511794008796634, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7428346572333042838}
+  m_SourcePrefab: {fileID: 100100000, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+--- !u!4 &2287498228093457689 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1981772084525813405, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+  m_PrefabInstance: {fileID: 305814534066199428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3618007031080212621 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3894424603166769929, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+  m_PrefabInstance: {fileID: 305814534066199428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4515842511864802838 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4221287253963830674, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+  m_PrefabInstance: {fileID: 305814534066199428}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9149671014003926951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de473669e23de9443a6f81edfa6cbe5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &4543974556477989125 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4265199644144990849, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+  m_PrefabInstance: {fileID: 305814534066199428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5331811682454763102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5602511794008796634, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+  m_PrefabInstance: {fileID: 305814534066199428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7428346572333042838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5331811682454763102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c29ffb6e3b646fb9754fb8410501d2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 4543974556477989125}
+  playerVisualT: {fileID: 2287498228093457689}
+  animationsFrames:
+  - frames:
+    - 0.5833333
+    - 1.05
+  - frames:
+    - 0.2833333
+  animationsFramesName: 0400000005000000
+--- !u!50 &8670329210955622432 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8965904656800232356, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+  m_PrefabInstance: {fileID: 305814534066199428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9003970871964547821 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8704050151867801961, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+  m_PrefabInstance: {fileID: 305814534066199428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9149671014003926951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8846285717938027555, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+  m_PrefabInstance: {fileID: 305814534066199428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4996283307294126043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9149671014003926951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc5d9d13d2724e2b9fc197183a68297a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8670329210955622432}
+  movementSpeed: 10
+  enemyTransform: {fileID: 9003970871964547821}
+  chasingArea: 0
+  attackArea: 7
+  castSpellArea: 0
+  attackDamage: 0
+  detectionLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 72
+  idleTime: 3
+  attackPoint: {fileID: 3618007031080212621}
+  knockBackStrength: 0
+  enemyAnimationVisuals: {fileID: 7428346572333042838}
+  _enemyHealth: {fileID: 4515842511864802838}
+  waterBall: {fileID: 11400000, guid: 5ee5194f8a286c54dbbe2c2a5ba2759b, type: 2}
+  waterTrap: {fileID: 11400000, guid: 5e5098eb302926244a7f586c6d76b6a5, type: 2}

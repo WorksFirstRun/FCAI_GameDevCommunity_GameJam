@@ -13,7 +13,8 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
             Idle_Roaming,
             Attack,
             Chase,
-            Cast
+            Cast,
+            KnockBack
         }
         
         public FallBackNode(Context fbR,CheckForFallBack fallBackMode,Node parent)
@@ -39,6 +40,9 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
                 case CheckForFallBack.Cast:
                     Debug.LogError("Cast is not Initialized for now");
                     break;
+                case CheckForFallBack.KnockBack:
+                    CheckForKnockBackFallBack();
+                    break;
                 default:
                     Debug.LogError("wrong FallBack Mode");
                     break;
@@ -53,22 +57,16 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
             float chaseArea = fallBackRequirments.chasingArea;
             float castArea = fallBackRequirments.castSpellArea;
 
-            bool whatToDo = 
-                fallBackRequirments.CheckForArea(fallBackRequirments.playerTransform.position,
-                    chaseArea, fallBackRequirments.desiredDetectionLayer) || 
-                fallBackRequirments.CheckForArea(fallBackRequirments.playerTransform.position,
+            bool whatToDo =
+                Context.CheckForArea(fallBackRequirments.entityTransform.position,
+                    chaseArea, fallBackRequirments.desiredDetectionLayer) ||
+                Context.CheckForArea(fallBackRequirments.entityTransform.position,
                     castArea, fallBackRequirments.desiredDetectionLayer) ||
-                fallBackRequirments.CheckForArea(fallBackRequirments.firePoint.position,
-                    attackArea, fallBackRequirments.desiredDetectionLayer);
+                Context.CheckForArea(fallBackRequirments.firePoint.position,
+                    attackArea, fallBackRequirments.desiredDetectionLayer) ||
+                fallBackRequirments.isGettingKnockedBack;
 
-            if (whatToDo)
-            {
-                fallBack = Status.Fail;
-            }
-            else
-            {
-                fallBack = Status.Running;
-            }
+            fallBack = whatToDo ? Status.Fail : Status.Running;
         }
 
         void CheckChaseFallBack()
@@ -77,19 +75,13 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
             float chaseArea = fallBackRequirments.chasingArea;
 
             bool whatToDo = 
-                ! fallBackRequirments.CheckForArea(fallBackRequirments.playerTransform.position,
+                ! Context.CheckForArea(fallBackRequirments.entityTransform.position,
                     chaseArea, fallBackRequirments.desiredDetectionLayer) || 
-                fallBackRequirments.CheckForArea(fallBackRequirments.firePoint.position,
-                    attackArea, fallBackRequirments.desiredDetectionLayer);
+                Context.CheckForArea(fallBackRequirments.firePoint.position,
+                    attackArea, fallBackRequirments.desiredDetectionLayer) ||
+                fallBackRequirments.isGettingKnockedBack;
 
-            if (whatToDo)
-            {
-                fallBack = Status.Fail;
-            }
-            else
-            {
-                fallBack = Status.Running;
-            }
+            fallBack = whatToDo ? Status.Fail : Status.Running;
         }
 
         void CheckAttackFallBack()
@@ -97,17 +89,18 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
             float attackArea = fallBackRequirments.attackingArea;
 
             bool whatToDo = 
-                ! fallBackRequirments.CheckForArea(fallBackRequirments.firePoint.position,
-                    attackArea, fallBackRequirments.desiredDetectionLayer);
+                !Context.CheckForArea(fallBackRequirments.firePoint.position,
+                    attackArea, fallBackRequirments.desiredDetectionLayer) ||
+                fallBackRequirments.isGettingKnockedBack;
 
-            if (whatToDo)
-            {
-                fallBack = Status.Fail;
-            }
-            else
-            {
-                fallBack = Status.Running;
-            }
+            fallBack = whatToDo ? Status.Fail : Status.Running;
+        }
+
+        void CheckForKnockBackFallBack()
+        {
+            bool whatToDo = fallBackRequirments.isGettingKnockedBack;
+
+            fallBack = whatToDo ? Status.Running : Status.Fail;
         }
     }
 }

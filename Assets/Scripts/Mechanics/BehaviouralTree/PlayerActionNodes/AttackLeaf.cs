@@ -44,19 +44,19 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
             attackInformationArray = new AttackInformation[]
             {
                 new AttackInformation(
-                    attack1ContextRequirments.playerAnimation.GetAnimationClipTime(PlayerAnimations.Attack1),
+                    attack1ContextRequirments.animation_VisualsHandler.GetAnimationClipTime(PlayerAnimations.Attack1),
                     PlayerAnimations.Attack1,
                     7f / 60f,
                     attackPoints[0]
                 ),
                 new AttackInformation(
-                    attack1ContextRequirments.playerAnimation.GetAnimationClipTime(PlayerAnimations.Attack2),
+                    attack1ContextRequirments.animation_VisualsHandler.GetAnimationClipTime(PlayerAnimations.Attack2),
                     PlayerAnimations.Attack2,
                     7f / 60f,
                     attackPoints[1]
                 ),
                 new AttackInformation(
-                    attack1ContextRequirments.playerAnimation.GetAnimationClipTime(PlayerAnimations.Attack3),
+                    attack1ContextRequirments.animation_VisualsHandler.GetAnimationClipTime(PlayerAnimations.Attack3),
                     PlayerAnimations.Attack3,
                     14f / 60f,
                     attackPoints[2]
@@ -78,7 +78,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
                 SetCurrentChild(nodeIndex);
                 isActive = true;
                 nodeMaxActiveTime = attackInformationArray[currentAttackNumber].attackTiming;
-                attack1ContextRequirments.playerAnimation.SwitchAnimation(attackInformationArray[currentAttackNumber].animation);
+                attack1ContextRequirments.animation_VisualsHandler.SwitchAnimation(attackInformationArray[currentAttackNumber].animation);
                 currentAttackFrame = attackInformationArray[currentAttackNumber].hitFrame;
                 currentAttack = attackInformationArray[currentAttackNumber].attack;
                 currentAttackNumber = (currentAttackNumber + 1) % attackInformationArray.Length;
