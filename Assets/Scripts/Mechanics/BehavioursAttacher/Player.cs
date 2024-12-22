@@ -63,6 +63,16 @@ public class Player : MonoBehaviour
     {
         _behaviourTree.Evaluate();
     }
+
+    public void DisablePlayerBehaviour()
+    {
+        _behaviourTree.DisableTheTree();
+    }
+
+    public void EnableThePlayerBehaviour()
+    {
+        _behaviourTree.EnableTheTree();
+    }
     
     private void OnDrawGizmos()
     {

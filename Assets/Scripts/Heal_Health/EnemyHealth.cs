@@ -3,9 +3,11 @@ using System;
 
 public class EnemyHealth : BaseHealthScript
 {
-   [SerializeField] private Enemy _enemyLogic;
-   [SerializeField] private BaseAnimationAndVisualsScript enemyAnimationsVisuals;
+   [SerializeField] protected Enemy _enemyLogic;
+   [SerializeField] protected BaseAnimationAndVisualsScript enemyAnimationsVisuals;
+   [SerializeField] protected LootSO enemyLoot;
    private bool trigered;
+   private const string SPAWNLOOTANDDESTROY = "SpawnLootAndDestroy";
    public event Action onKnockBackTrigger;
    
    public override void TakeDamage(float damage)
@@ -17,11 +19,19 @@ public class EnemyHealth : BaseHealthScript
          float deathTime = enemyAnimationsVisuals.GetAnimationClipTime(enemyAnimationsVisuals.GetDeathAnimationEnum());
          _enemyLogic.DisableEnemyBehaviour();
          enemyAnimationsVisuals.SwitchAnimation(enemyAnimationsVisuals.GetDeathAnimationEnum());
-         Destroy(gameObject,deathTime);
+         Invoke(SPAWNLOOTANDDESTROY,deathTime);
       }
       else
       {
          onKnockBackTrigger?.Invoke();
       }
    }
+
+   private void SpawnLootAndDestroy()
+   {
+      DropSystem.Instance.DropItem(enemyLoot,transform.position);
+      Destroy(gameObject);
+   }
+   
+ 
 }

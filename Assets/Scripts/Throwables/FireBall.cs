@@ -54,7 +54,7 @@ public class FireBall : MonoBehaviour
         }
         
         rb.velocity = Vector2.zero;
-        _animator.Play(EXPLOSION,0); // don't try this at home
+        _animator.Play(EXPLOSION,0);
         Destroy(gameObject,destroyDelayTime);
     }
 }

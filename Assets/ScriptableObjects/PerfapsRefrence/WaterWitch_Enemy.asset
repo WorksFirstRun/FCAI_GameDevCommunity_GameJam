@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fb4a3c973eab64b9a91f1b6887e10c, type: 3}
+  m_Name: WaterWitch_Enemy
+  m_EditorClassIdentifier: 
+  entity: {fileID: 9003970871964547821, guid: 3224a7dd0947f9a49989f0edf7324a41, type: 3}

@@ -12,6 +12,8 @@ public class InputManager : MonoBehaviour
     public event Action onCastPerformed;
 
     public event Action onCastReleased;
+
+    public event Action onEscapeAction;
     
     private void Awake()
     {
@@ -24,6 +26,12 @@ public class InputManager : MonoBehaviour
         _inputMap.Player.Dash.performed += DashPerformed;
         _inputMap.Player.Cast.performed += CastPerformed;
         _inputMap.Player.Cast.canceled += CastReleased;
+        _inputMap.Player.Esc.performed += GamePause;
+    }
+
+    private void GamePause(InputAction.CallbackContext obj)
+    {
+        onEscapeAction?.Invoke();
     }
 
     private void CastReleased(InputAction.CallbackContext obj)
@@ -55,5 +63,20 @@ public class InputManager : MonoBehaviour
     public Vector2 GetMovementInputDirection_Normalized()
     {
         return _inputMap.Player.Movement.ReadValue<Vector2>().normalized;
+    }
+
+    public void DisableInput()
+    {
+        _inputMap.Player.Disable();
+    }
+
+    private void OnDestroy()
+    {
+        onMovementPerformed = null;
+        onCastReleased = null;
+        onAttackPerformed = null;
+        onCastPerformed = null;
+        onDashPerformed = null;
+        onEscapeAction = null;
     }
 }

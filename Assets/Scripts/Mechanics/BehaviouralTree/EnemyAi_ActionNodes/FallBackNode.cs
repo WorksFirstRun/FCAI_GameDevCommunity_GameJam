@@ -13,8 +13,8 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
             Idle_Roaming,
             Attack,
             Chase,
-            Cast,
-            KnockBack
+            KnockBack,
+            Teleporting
         }
         
         public FallBackNode(Context fbR,CheckForFallBack fallBackMode,Node parent)
@@ -37,11 +37,11 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
                 case CheckForFallBack.Attack:
                     CheckAttackFallBack();
                     break;
-                case CheckForFallBack.Cast:
-                    Debug.LogError("Cast is not Initialized for now");
-                    break;
                 case CheckForFallBack.KnockBack:
                     CheckForKnockBackFallBack();
+                    break;
+                case CheckForFallBack.Teleporting:
+                    CheckForTeleportingFallBack();
                     break;
                 default:
                     Debug.LogError("wrong FallBack Mode");
@@ -64,7 +64,8 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
                     castArea, fallBackRequirments.desiredDetectionLayer) ||
                 Context.CheckForArea(fallBackRequirments.firePoint.position,
                     attackArea, fallBackRequirments.desiredDetectionLayer) ||
-                fallBackRequirments.isGettingKnockedBack;
+                fallBackRequirments.isGettingKnockedBack ||
+                fallBackRequirments.isTeleporting;
 
             fallBack = whatToDo ? Status.Fail : Status.Running;
         }
@@ -98,7 +99,14 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
 
         void CheckForKnockBackFallBack()
         {
-            bool whatToDo = fallBackRequirments.isGettingKnockedBack;
+            bool whatToDo = fallBackRequirments.isGettingKnockedBack && !fallBackRequirments.isTeleporting;
+
+            fallBack = whatToDo ? Status.Running : Status.Fail;
+        }
+
+        void CheckForTeleportingFallBack()
+        {
+            bool whatToDo = fallBackRequirments.isTeleporting;
 
             fallBack = whatToDo ? Status.Running : Status.Fail;
         }

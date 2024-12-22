@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1fb4a3c973eab64b9a91f1b6887e10c, type: 3}
   m_Name: FireBall
   m_EditorClassIdentifier: 
-  fireBall: {fileID: 6019174964073741864, guid: 267db266a62f30e4ba4c5cf4f3e1cc5d, type: 3}
+  entity: {fileID: 6019174964073741864, guid: 267db266a62f30e4ba4c5cf4f3e1cc5d, type: 3}

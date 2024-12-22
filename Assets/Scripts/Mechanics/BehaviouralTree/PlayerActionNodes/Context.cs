@@ -33,6 +33,8 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
         
         public bool isGettingKnockedBack { get; set; }
         
+        public bool isTeleporting { get; set; }
+        
         public Context(float moveSpeed, Rigidbody2D rigidbody,PlayerAnimation animationVisualsHandler, 
             ZoomIn_OutCamera ioCamera,FirePower fp,UIBars uiBars,Transform firePoint, 
             GameObjectRefrence_SO fireBallReference,Transform entityTransform)

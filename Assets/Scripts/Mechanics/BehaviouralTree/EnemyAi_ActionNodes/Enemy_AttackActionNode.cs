@@ -14,6 +14,9 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
         private AttackStates attackState;
         private TAttack idleStateName;
         private bool isEndOfFrames;
+        private Transform playerRefrence;
+        private Vector2 oldDirection;
+        private float directionThreshold = 0.1f;
         
         private struct AttackInformation
         {
@@ -71,13 +74,30 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
         public override Node StartNode()
         {
             attackContextRequirements.animation_VisualsHandler.SwitchAnimation(idleStateName);
+            float attackArea = attackContextRequirements.attackingArea;
+            bool isIn = Context.CheckForArea(attackContextRequirements.firePoint.position, attackArea, attackContextRequirements.desiredDetectionLayer, out Collider2D obj);
+            if (!isIn) return this;
+            Vector2 direction = (obj.transform.position - attackContextRequirements.entityTransform.position);
+            playerRefrence = obj.transform;
+            attackContextRequirements.animation_VisualsHandler.AdjustVisualDirection(direction.x);
             return this;
         }
 
+        private void AdjustDirectionToThePlayer()
+        {
+            Vector2 direction = (playerRefrence.position - attackContextRequirements.entityTransform.position)
+                .normalized;
+            if (!(Mathf.Abs(direction.x) > directionThreshold) ||
+                Math.Sign(oldDirection.x) == Math.Sign(direction.x)) return;
+            
+            oldDirection = direction;
+            attackContextRequirements.animation_VisualsHandler.AdjustVisualDirection(direction.x);
+        }
+        
         public override Status Evaluate()
         {
             timer += Time.deltaTime;
-
+            AdjustDirectionToThePlayer();
             switch (attackState)
             {
                 case AttackStates.waiting:
