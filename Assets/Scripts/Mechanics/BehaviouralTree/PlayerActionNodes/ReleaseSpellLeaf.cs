@@ -47,7 +47,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
             if (nodeActiveTime >= releaseTime && !isInstantiated)
             {
                 isInstantiated = true;
-                Transform fb = Object.Instantiate(releaseSpellLeafRequirments.fireBallReference.fireBall,
+                Transform fb = Object.Instantiate(releaseSpellLeafRequirments.fireBallReference.entity,
                     releaseSpellLeafRequirments.firePoint.position,Quaternion.identity);
                 
                 fb.GetComponent<FireBall>().InitializeTheFireBall(releaseSpellLeafRequirments.GetMouseDirection(),

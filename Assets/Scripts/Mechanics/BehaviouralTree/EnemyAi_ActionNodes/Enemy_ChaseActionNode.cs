@@ -11,9 +11,12 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
         private Vector2 direction;
         private Transform playerTrasform;
         private TChase chaseStateName;
+        private Vector2 oldDirection;
+        private float directionThreshold = 0.1f;
         
         public Enemy_ChaseActionNode(Context chaseContextRequirements, Node parent,TChase chaseStateName)
         {
+            oldDirection = Vector2.zero;
             this.parent = parent;
             this.chaseContextRequirements = chaseContextRequirements;
             this.chaseStateName = chaseStateName;
@@ -26,11 +29,23 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
             return this;
         }
 
+        private void AdjustDirectionToThePlayer()
+        {
+            Vector2 directionT = (playerTrasform.position - chaseContextRequirements.entityTransform.position)
+                .normalized;
+            if (!(Mathf.Abs(directionT.x) > directionThreshold) ||
+                Math.Sign(oldDirection.x) == Math.Sign(directionT.x)) return;
+            
+            oldDirection = directionT;
+            chaseContextRequirements.animation_VisualsHandler.AdjustVisualDirection(directionT.x);
+        }
+        
+        
         public override Status Evaluate()
         {
             AdjustChaseDirection();
+            AdjustDirectionToThePlayer();
             Move();
-            chaseContextRequirements.animation_VisualsHandler.AdjustVisualDirection(direction.x);
             return Status.Running;
         }
 

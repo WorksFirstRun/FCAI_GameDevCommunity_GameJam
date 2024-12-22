@@ -498,6 +498,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  _playerLogic: {fileID: 7140339817604953774}
+  playerAnimation: {fileID: 4532899601445160515}
 --- !u!1 &7964974186732867710
 GameObject:
   m_ObjectHideFlags: 0

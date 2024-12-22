@@ -98,7 +98,7 @@ public class WaterWitch : Enemy
 
       Vector2 direction = (obj.transform.position - base.attackPoint.position);
       
-      Transform fb = Instantiate(waterBall.fireBall,
+      Transform fb = Instantiate(waterBall.entity,
          attackPoint.position,Quaternion.identity);
       
       fb.GetComponent<FireBall>().InitializeTheFireBall(direction,
@@ -113,7 +113,7 @@ public class WaterWitch : Enemy
          .detectionLayerMask, out Collider2D obj);
 
       Vector2 spawnPosition = new Vector2(obj.transform.position.x, obj.transform.position.y - 1);
-      Transform fb = Instantiate(waterTrap.fireBall,
+      Transform fb = Instantiate(waterTrap.entity,
          spawnPosition,Quaternion.identity);
       
       fb.GetComponent<WaterTrap>().InitializeTheLake(transform);

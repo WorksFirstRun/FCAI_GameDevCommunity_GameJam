@@ -112,8 +112,15 @@ namespace BehaviourTreeNamespace
 
         public void DisableTheTree()
         {
-            base.Reset();
+            /*
+            base.Reset(); // idk if i should do that or not D: 
+            */
             isDisabled = true;
+        }
+
+        public void EnableTheTree()
+        {
+            isDisabled = false;
         }
     }
 

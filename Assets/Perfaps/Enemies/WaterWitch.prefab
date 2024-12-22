@@ -29,6 +29,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4221287253963830674, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: enemyLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 4fe4b7d84d2ff464480d3b8c02b2f042, type: 2}
+    - target: {fileID: 4221287253963830674, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
       propertyPath: maxHealth
       value: 40
       objectReference: {fileID: 0}

@@ -57,6 +57,10 @@ PrefabInstance:
       value: 0.4333333
       objectReference: {fileID: 0}
     - target: {fileID: 4221287253963830674, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
+      propertyPath: enemyLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: a21c7877aa44c7d4ebd10d2d2c26d92e, type: 2}
+    - target: {fileID: 4221287253963830674, guid: 6ad74784ae7b7b2449ee4513fcfb0ddc, type: 3}
       propertyPath: _enemyLogic
       value: 
       objectReference: {fileID: 791183969608552676}

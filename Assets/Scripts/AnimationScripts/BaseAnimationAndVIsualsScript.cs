@@ -129,3 +129,12 @@ public enum PlayerAnimations
     CastSpell,
     SlashEffect
 }
+
+public enum FireDemonAnimations
+{
+    Idle,
+    Run,
+    Teleport,
+    Hit,
+    Death
+}

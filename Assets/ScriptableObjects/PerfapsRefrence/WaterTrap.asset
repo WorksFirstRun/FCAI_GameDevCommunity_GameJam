@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1fb4a3c973eab64b9a91f1b6887e10c, type: 3}
   m_Name: WaterTrap
   m_EditorClassIdentifier: 
-  fireBall: {fileID: 3673302279161268109, guid: bc289380b5213cb4aa80a8b352bb95a8, type: 3}
+  entity: {fileID: 3673302279161268109, guid: bc289380b5213cb4aa80a8b352bb95a8, type: 3}

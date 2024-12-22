@@ -61,7 +61,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &6300439679917754966
 MonoBehaviour:
@@ -808,3 +808,4 @@ MonoBehaviour:
   maxHealth: 30
   _enemyLogic: {fileID: 6691081639960107619}
   enemyAnimationsVisuals: {fileID: 0}
+  enemyLoot: {fileID: 0}
