@@ -33,5 +33,8 @@ public class EnemyHealth : BaseHealthScript
       Destroy(gameObject);
    }
    
- 
+   private void OnDestroy()
+   {
+      onKnockBackTrigger = null;
+   }
 }

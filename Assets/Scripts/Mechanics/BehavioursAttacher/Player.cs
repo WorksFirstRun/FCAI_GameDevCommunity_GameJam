@@ -106,9 +106,10 @@ public class Player : MonoBehaviour
     private void Attack1()
     {
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(attackPoints[0].position, attackAreas[0], desiredDetectionLayer);
-
+        
+        SoundManager.PlaySound(ClipName.Sword,transform.position);
         if (objectsInRange.Length == 0) return;
-
+        
         foreach (Collider2D obj in objectsInRange)
         {
             if (obj.TryGetComponent(out BaseHealthScript objHealth))
@@ -121,9 +122,11 @@ public class Player : MonoBehaviour
     private void Attack2()
     {
         Collider2D[] objectsInRange = Physics2D.OverlapCircleAll(attackPoints[1].position, attackAreas[1], desiredDetectionLayer);
-
+       
+        SoundManager.PlaySound(ClipName.Sword, transform.position);
+       
         if (objectsInRange.Length == 0) return;
-
+        
         foreach (Collider2D obj in objectsInRange)
         {
             if (obj.TryGetComponent(out BaseHealthScript objHealth))
@@ -138,9 +141,10 @@ public class Player : MonoBehaviour
         float height = 0.1f; 
 
         Collider2D[] objectsInRange = Physics2D.OverlapBoxAll(attackPoints[2].position, new Vector2(attackAreas[2], height), 0f, desiredDetectionLayer);
-
+        SoundManager.PlaySound(ClipName.Sword, transform.position);
+       
         if (objectsInRange.Length == 0) return;
-
+       
         foreach (Collider2D obj in objectsInRange)
         {
             if (obj.TryGetComponent(out BaseHealthScript objHealth))

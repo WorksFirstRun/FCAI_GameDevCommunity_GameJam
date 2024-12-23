@@ -7,11 +7,10 @@ public class GameManager : MonoBehaviour
 {
     private bool gamePause;
     public event Action OnShowPauseUi;
-    public event Action OnHidePauseUi;
     public event Action OnHideAnyOtherUi;
-    public event Action OnShowLoseUi;
-    public event Action OnShowWinUi;
+    
     [SerializeField] private Player playerLogicReference;
+    [SerializeField] private BossHealth bossHealthReference;
     private bool win, lose;
     public static GameManager Instance { get; private set; }
 
@@ -25,7 +24,7 @@ public class GameManager : MonoBehaviour
         InputManager.Instance.onEscapeAction += TogglePauseGame;
     }
 
-    public void TogglePauseGame() // some buttons use it i can't make it private
+    public void TogglePauseGame() // some buttons use it I can't make it private
     {
         if (lose || win) return;
         
@@ -85,8 +84,9 @@ public class GameManager : MonoBehaviour
         lose = true;
         Time.timeScale = 0;
         OnHideAnyOtherUi?.Invoke();
-        OnShowLoseUi?.Invoke();
         InputManager.Instance.DisableInput();
+        Time.timeScale = 1; // have to set the timescale to 1 in order for transitions to work
+        SceneLoader.Load(SceneLoader.Scenes.LoseScene);
     }
 
     public void DeclarePlayerWon()
@@ -94,8 +94,15 @@ public class GameManager : MonoBehaviour
         win = true;
         Time.timeScale = 0;
         OnHideAnyOtherUi?.Invoke();
-        OnShowWinUi?.Invoke();
         InputManager.Instance.DisableInput();
+        Time.timeScale = 1; // have to set the timescale to 1 in order for transitions to work
+        SceneLoader.Load(SceneLoader.Scenes.WinScene);
     }
-    
+
+
+    private void OnDestroy()
+    {
+        OnShowPauseUi = null;
+        OnHideAnyOtherUi = null;
+    }
 }

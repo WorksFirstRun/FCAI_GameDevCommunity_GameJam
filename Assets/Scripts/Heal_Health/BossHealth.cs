@@ -5,8 +5,9 @@
 public class BossHealth : EnemyHealth
 {
     public event Action OnBossHealthChanged;
+    
     private float nextHealthPointsTriger;
-
+        
     private void Start()
     {
         nextHealthPointsTriger = currentHealth - 20;
@@ -21,8 +22,15 @@ public class BossHealth : EnemyHealth
             DropSystem.Instance.DropItem(enemyLoot, transform.position);
             nextHealthPointsTriger -= 20;
         }
+
+        if (died && GameManager.Instance != null)
+        {
+            GameManager.Instance.DeclarePlayerWon();
+        }
     }
-    
-    
-    
+
+    private void OnDestroy()
+    {
+        OnBossHealthChanged = null;
+    }
 }
