@@ -62,7 +62,9 @@ public  class BaseHealthScript : MonoBehaviour
     {
         
     }
-    
-    
 
+    private  void OnDestroy()
+    {
+        onHealthUpdateBar = null;
+    }
 }
