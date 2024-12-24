@@ -36,6 +36,7 @@ public class WaterTrap : MonoBehaviour
         yield return new WaitForSeconds(explodeTime);
         waterCollider.enabled = true;
         _animator.SetTrigger(POPUPTHEWATER);
+        SoundManager.PlaySound(ClipName.WaterSpellExplosion,transform.position);
         yield return new WaitForSeconds(disableCollidedTime);
         waterCollider.enabled = false;
         yield return new WaitForSeconds(destroyTime);

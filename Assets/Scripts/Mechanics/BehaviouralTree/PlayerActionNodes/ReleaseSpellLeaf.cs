@@ -33,9 +33,11 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
                 releaseSpellLeafRequirments.firePower.DecreaseDecayingFactor(df - 0.15f);
                 chargingStatus = Status.Running;
                 releaseSpellLeafRequirments.animation_VisualsHandler.SwitchAnimation(PlayerAnimations.CastSpell);
+                SoundManager.PlaySound(ClipName.FireBallRelease,releaseSpellLeafRequirments.entityTransform.position);
             }
             else
             {
+                SoundManager.PlaySound(ClipName.CantCast,releaseSpellLeafRequirments.entityTransform.position);
                 chargingStatus = Status.Fail;
             }
             return this;

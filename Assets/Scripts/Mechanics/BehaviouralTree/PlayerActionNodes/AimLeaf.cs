@@ -49,6 +49,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
                 chargeFireContextRequirements.InOutCamera.ZoomIn();
                 chargeFireContextRequirements.animation_VisualsHandler.SwitchAnimation(PlayerAnimations.ChargeSpell);
                 chargeFireContextRequirements.ui_bars.ShowChargeBar();
+                SoundManager.PlaySound(ClipName.ZoomInCanCast,chargeFireContextRequirements.entityTransform.position);
             }
         }
 

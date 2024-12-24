@@ -6,7 +6,17 @@ using Random = UnityEngine.Random;
 public enum ClipName
 {
     Sword,
-    
+    CantCast,
+    Dash,
+    DemonVanish,
+    FireExplosion,
+    FireBallRelease,
+    Lose,
+    Win,
+    WaterSpellCast,
+    WaterSpellExplosion,
+    ZoomInCanCast,
+    UIButton
 }
 
 public class SoundManager : MonoBehaviour
@@ -49,15 +59,29 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    public static void ChangeVolume(float newVolume)
+    public static void ChangeVolume()
     {
         if (Instance == null) return;
-        Instance.ChangeV(newVolume);
+        Instance.ChangeV();
     }
 
-    private void ChangeV(float newVolume)
+    public static float GetVolume()
     {
-        soundVolume = newVolume;
+        return Instance == null ? 0f : Instance.GetVolumePrivate();
     }
+    
+    private void ChangeV()
+    {
+        soundVolume += 0.1f;
+        if (soundVolume >= 1.1f)
+        {
+            soundVolume = 0f;
+        }
+    }
+    
+    private float GetVolumePrivate()
+    {
+        return soundVolume;
+    } 
     
 }

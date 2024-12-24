@@ -36,6 +36,7 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
             dashContextRequirments.animation_VisualsHandler.SwitchAnimation(PlayerAnimations.Dash);
             dashDirection = InputManager.Instance.GetMovementInputDirection_Normalized();
             dashContextRequirments.rigidbody.AddForce(dashDirection * dashPower,ForceMode2D.Impulse);
+            SoundManager.PlaySound(ClipName.Dash,dashContextRequirments.entityTransform.position);
             
             return this;
         }
@@ -44,7 +45,11 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
         {
             if (GetActiveLeafNode() is AttackLeaf || GetActiveLeafNode() is IdleLeaf || GetActiveLeafNode() is DashLeaf) return;
             float df = dashContextRequirments.firePower.GetDecayingFireFactor();
-            if (df < 0.2f) return;
+            if (df < 0.2f)
+            {
+                SoundManager.PlaySound(ClipName.CantCast,dashContextRequirments.entityTransform.position);
+                return;
+            }
             isActive = true;
             SetCurrentChild(nodeIndex);
         }

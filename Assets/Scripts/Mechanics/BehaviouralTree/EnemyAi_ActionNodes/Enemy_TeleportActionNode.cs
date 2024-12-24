@@ -49,6 +49,7 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
         public override Node StartNode()
         {
             teleportContextRequirements.animation_VisualsHandler.SwitchAnimation(teleportStateName);
+            SoundManager.PlaySound(ClipName.DemonVanish,teleportContextRequirements.entityTransform.position);
             return this;
         }
 

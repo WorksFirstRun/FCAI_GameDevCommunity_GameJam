@@ -90,6 +90,7 @@ public class DarkSamurai : Enemy
 
       if (obj.TryGetComponent<BaseHealthScript>(out BaseHealthScript objHealth))
       {
+         SoundManager.PlaySound(ClipName.Sword,transform.position);
          objHealth.TakeDamage(attackDamage);
       }
       else

@@ -96,6 +96,7 @@ public class WaterWitch : Enemy
       Context.CheckForArea(base.attackPoint.position, attackArea, base
          .detectionLayerMask, out Collider2D obj);
 
+      SoundManager.PlaySound(ClipName.WaterSpellCast,transform.position);
       Vector2 direction = (obj.transform.position - base.attackPoint.position);
       
       Transform fb = Instantiate(waterBall.entity,
@@ -111,7 +112,7 @@ public class WaterWitch : Enemy
       float attackArea = base.attackArea;
       Context.CheckForArea(base.attackPoint.position, attackArea, base
          .detectionLayerMask, out Collider2D obj);
-
+      SoundManager.PlaySound(ClipName.WaterSpellCast, transform.position);
       Vector2 spawnPosition = new Vector2(obj.transform.position.x, obj.transform.position.y - 1);
       Transform fb = Instantiate(waterTrap.entity,
          spawnPosition,Quaternion.identity);

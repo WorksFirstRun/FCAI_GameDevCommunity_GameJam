@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Button ResumeButton;
     [SerializeField] private Button AudioSettings;
     [SerializeField] private Button ExitToMainMenu;
-
+    [SerializeField] private AudioSettingsUI _audioSettingsUI;
 
     private void Start()
     {
@@ -19,6 +19,8 @@ public class PauseMenu : MonoBehaviour
             GameManager.Instance.TogglePauseGame();
             
         });
+        
+        AudioSettings.onClick.AddListener(_audioSettingsUI.Show);
         
         ExitToMainMenu.onClick.AddListener(() =>
         {
