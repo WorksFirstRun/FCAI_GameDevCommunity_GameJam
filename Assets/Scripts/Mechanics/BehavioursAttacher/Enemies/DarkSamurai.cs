@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class DarkSamurai : Enemy
 {
-   private void Start()
+   public override void InitializeTheEnemy()
    {
       Context enemyLeafsContext = new Context
       {

@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsList:
   - Item: {fileID: 3586154688473125541, guid: 464cdafe333678a48aecb0e122b05a16, type: 3}
-    dropRate: 40
+    dropRate: 50
   - Item: {fileID: 2075358608952937642, guid: 4b093ff98de024044b7db71a828e72ea, type: 3}
     dropRate: 30
+  - Item: {fileID: 2075358608952937642, guid: 37383681a77486b4d951335b499276df, type: 3}
+    dropRate: 20

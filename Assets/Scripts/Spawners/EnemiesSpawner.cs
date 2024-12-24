@@ -3,11 +3,15 @@ using UnityEngine;
 
 public class EnemiesSpawner : MonoBehaviour
 {
-    [SerializeField] private List<GameObjectRefrence_SO> enemiesList; 
+    [SerializeField] private EnemyPooler.EnemyType spawnerType;
     [SerializeField] private Transform spawnAreaMin;   
     [SerializeField] private Transform spawnAreaMax;
+    [SerializeField] private Vector2 playerDetectionArea;
+    [SerializeField] private Transform playerDetectionOffset;
     [SerializeField] private float spawnInterval;
-
+    [SerializeField] private LayerMask playerLayer;
+    
+    
     private float spawnTimer;
 
     private void Update()
@@ -15,12 +19,13 @@ public class EnemiesSpawner : MonoBehaviour
        
         spawnTimer -= Time.deltaTime;
 
+
+        if (!(spawnTimer <= 0f)) return;
+        if (!CheckIfPlayerInSpawner()) return;
         
-        if (spawnTimer <= 0f)
-        {
-            SpawnEnemy();
-            spawnTimer = spawnInterval; 
-        }
+        
+        SpawnEnemy();
+        spawnTimer = spawnInterval;
     }
 
     private void SpawnEnemy()
@@ -28,8 +33,7 @@ public class EnemiesSpawner : MonoBehaviour
         float spawnX = Random.Range(spawnAreaMin.position.x, spawnAreaMax.position.x);
         float spawnY = Random.Range(spawnAreaMin.position.y, spawnAreaMax.position.y);
         Vector2 spawnPosition = new Vector2(spawnX, spawnY);
-        Transform whatToSpawn = enemiesList[Random.Range(0, enemiesList.Count)].entity;
-        Instantiate(whatToSpawn, spawnPosition, Quaternion.identity);
+        EnemyPooler.Instance.SpawnFromPool(spawnerType, spawnPosition, Quaternion.identity);
     }
 
    
@@ -40,5 +44,17 @@ public class EnemiesSpawner : MonoBehaviour
         Vector2 center = new Vector2(spawnAreaMin.position.x + spawnAreaMax.position.x,
             spawnAreaMax.position.y + spawnAreaMin.position.y);
         Gizmos.DrawWireCube((center) / 2.0f, size);
+
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(playerDetectionOffset.position, playerDetectionArea);
+    }
+    
+    
+
+    private bool CheckIfPlayerInSpawner()
+    {
+        Collider2D hitColliders = Physics2D.OverlapBox(playerDetectionOffset.position, playerDetectionArea, 0f,playerLayer);
+        return hitColliders is not null;
     }
 }

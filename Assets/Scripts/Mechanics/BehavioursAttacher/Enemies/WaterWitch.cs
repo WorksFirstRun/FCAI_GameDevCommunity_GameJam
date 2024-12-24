@@ -9,7 +9,7 @@ public class WaterWitch : Enemy
    [SerializeField] private GameObjectRefrence_SO waterBall;
    [SerializeField] private GameObjectRefrence_SO waterTrap;
    
-     private void Start()
+   public override void InitializeTheEnemy()
    {
       Context enemyLeafsContext = new Context
       {

@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 8252072284107923501}
   - component: {fileID: 6356175330480111036}
   - component: {fileID: 324925944115520791}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,4 +222,3 @@ MonoBehaviour:
   damageAmount: 40
   decreaseTheFirePower: 0
   desiredDamageableObject: 0
-  _collider2D: {fileID: 8252072284107923501}

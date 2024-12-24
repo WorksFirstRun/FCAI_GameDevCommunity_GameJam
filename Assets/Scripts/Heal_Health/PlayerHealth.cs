@@ -8,6 +8,7 @@ public class PlayerHealth : BaseHealthScript
     [SerializeField] private BaseAnimationAndVisualsScript playerAnimation;
     private bool isTriggered;
     private float deathTime;
+    public event Action OnPlayerDamaged;
 
     private void Start()
     {
@@ -23,6 +24,10 @@ public class PlayerHealth : BaseHealthScript
             _playerLogic.DisablePlayerBehaviour();
             playerAnimation.SwitchAnimation(PlayerAnimations.Death);
             Invoke(DECLARELOSE,deathTime);
+        }
+        else
+        {
+            OnPlayerDamaged?.Invoke();
         }
     }
     

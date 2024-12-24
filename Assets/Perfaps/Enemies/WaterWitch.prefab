@@ -200,7 +200,7 @@ MonoBehaviour:
     m_Bits: 8
   obstacleLayerMask:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 4168
   idleTime: 3
   attackPoint: {fileID: 3618007031080212621}
   knockBackStrength: 0

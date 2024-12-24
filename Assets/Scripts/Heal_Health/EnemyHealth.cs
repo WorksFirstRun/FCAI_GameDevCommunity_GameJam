@@ -1,13 +1,13 @@
 using UnityEngine;
 using System;
 
-public class EnemyHealth : BaseHealthScript
+public class EnemyHealth : BaseHealthScript , IEnemyEnable
 {
    [SerializeField] protected Enemy _enemyLogic;
    [SerializeField] protected BaseAnimationAndVisualsScript enemyAnimationsVisuals;
    [SerializeField] protected LootSO enemyLoot;
    private bool trigered;
-   private const string SPAWNLOOTANDDESTROY = "SpawnLootAndDestroy";
+   private const string SPAWNLOOTANDDISABLE = "SpawnLootAndDisable";
    public event Action onKnockBackTrigger;
    
    public override void TakeDamage(float damage)
@@ -19,7 +19,7 @@ public class EnemyHealth : BaseHealthScript
          float deathTime = enemyAnimationsVisuals.GetAnimationClipTime(enemyAnimationsVisuals.GetDeathAnimationEnum());
          _enemyLogic.DisableEnemyBehaviour();
          enemyAnimationsVisuals.SwitchAnimation(enemyAnimationsVisuals.GetDeathAnimationEnum());
-         Invoke(SPAWNLOOTANDDESTROY,deathTime);
+         Invoke(SPAWNLOOTANDDISABLE,deathTime);
       }
       else
       {
@@ -27,12 +27,21 @@ public class EnemyHealth : BaseHealthScript
       }
    }
 
-   private void SpawnLootAndDestroy()
+   private void SpawnLootAndDisable()
    {
       DropSystem.Instance.DropItem(enemyLoot,transform.position);
-      Destroy(gameObject);
+      gameObject.SetActive(false); // for object pooling, i can't destroy it 
    }
-   
+
+   public void EnableBackTheEnemy()
+   {
+      gameObject.SetActive(true);
+      this.SetCurrentHealth(maxHealth);
+      _enemyLogic.EnableEnemyBehaviour();
+      trigered = false;
+      died = false;
+   }
+
    private void OnDestroy()
    {
       onKnockBackTrigger = null;
