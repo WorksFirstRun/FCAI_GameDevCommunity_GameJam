@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5460789966289044275}
   - component: {fileID: 1920654616722516215}
   - component: {fileID: 7692400601798120051}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FireChagre
   m_TagString: Untagged
   m_Icon: {fileID: 0}

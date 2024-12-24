@@ -63,6 +63,11 @@ public  class BaseHealthScript : MonoBehaviour
         
     }
 
+    public void ResetHealthToMax()
+    {
+        this.SetCurrentHealth(maxHealth);
+    }
+
     private  void OnDestroy()
     {
         onHealthUpdateBar = null;

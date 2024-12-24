@@ -19,8 +19,18 @@ public class Enemy : MonoBehaviour
    [SerializeField] protected BaseAnimationAndVisualsScript enemyAnimationVisuals;
    [SerializeField] protected EnemyHealth _enemyHealth;
    
-   public void DisableEnemyBehaviour()
+   public void DisableEnemyBehaviour() // used for enemy disabling 
    {
       _behaviourTree.DisableTheTree();
+   }
+
+   public void EnableEnemyBehaviour() // used for enemy enabling for object pooling
+   {
+      _behaviourTree.EnableTheTree();
+   }
+
+   public virtual void InitializeTheEnemy()
+   {
+      // base initializer  
    }
 }

@@ -30,15 +30,21 @@ namespace Mechanics.BehaviouralTree.PlayerActionNodes
         {
             if (!isActive) return this;
             
+            float df = dashContextRequirments.firePower.GetDecayingFireFactor();
+            
+            dashContextRequirments.firePower.DecreaseDecayingFactor(df - 0.2f);
             dashContextRequirments.animation_VisualsHandler.SwitchAnimation(PlayerAnimations.Dash);
             dashDirection = InputManager.Instance.GetMovementInputDirection_Normalized();
             dashContextRequirments.rigidbody.AddForce(dashDirection * dashPower,ForceMode2D.Impulse);
+            
             return this;
         }
 
         private void DashPerformed()
         {
             if (GetActiveLeafNode() is AttackLeaf || GetActiveLeafNode() is IdleLeaf || GetActiveLeafNode() is DashLeaf) return;
+            float df = dashContextRequirments.firePower.GetDecayingFireFactor();
+            if (df < 0.2f) return;
             isActive = true;
             SetCurrentChild(nodeIndex);
         }

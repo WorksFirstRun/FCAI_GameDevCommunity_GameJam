@@ -11,6 +11,8 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
         private Vector2 direction;
         private float pointDistanceThreshHold;
         private bool isReached;
+        private float nodeTimeOut;
+        private float timer;
         private TRoam roamStateName;
         
         
@@ -20,6 +22,7 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
             pointDistanceThreshHold = 1.2f;
             this.roamContextRequirements = roamContextRequirements;
             this.roamStateName = roamStateName;
+            nodeTimeOut = 2f;
         }
 
         public override Node StartNode()
@@ -36,14 +39,16 @@ namespace BehaviourTreeNamespace.EnemyAi_ActionNodes
 
         public override Status Evaluate()
         {
+            timer += Time.deltaTime;
             CheckIfReached(); 
-            return isReached ? Status.Success : Status.Running;
+            return isReached || timer > nodeTimeOut ? Status.Success : Status.Running;
         }
 
         public override void Reset()
         {
             roamContextRequirements.rigidbody.velocity = Vector2.zero;
             isReached = false;
+            timer = 0f;
         }
 
 

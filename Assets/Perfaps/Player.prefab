@@ -331,6 +331,7 @@ MonoBehaviour:
   playerVisualT: {fileID: 7495680472725750981}
   animationsFrames: []
   animationsFramesName: 
+  _playerHealth: {fileID: 3339305015443047574}
 --- !u!1 &7845539558927446225
 GameObject:
   m_ObjectHideFlags: 0

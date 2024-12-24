@@ -64,12 +64,12 @@ public class Player : MonoBehaviour
         _behaviourTree.Evaluate();
     }
 
-    public void DisablePlayerBehaviour()
+    public void DisablePlayerBehaviour() // used for pause and player death
     {
         _behaviourTree.DisableTheTree();
     }
 
-    public void EnableThePlayerBehaviour()
+    public void EnableThePlayerBehaviour() // used for unpause
     {
         _behaviourTree.EnableTheTree();
     }

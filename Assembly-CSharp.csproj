@@ -52,6 +52,7 @@
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\PlayerActionNodes\ReleaseSpellLeaf.cs" />
     <Compile Include="Assets\Scripts\AnimationScripts\DarkSamuraiAnimationsVisuals.cs" />
     <Compile Include="Assets\Scripts\AnimationScripts\PlayerAnimationAndVisuals.cs" />
+    <Compile Include="Assets\Scripts\Iterfaces\IEnemyEnable.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\EnemyAi_ActionNodes\Enemy_AttackActionNode.cs" />
     <Compile Include="Assets\Scripts\Spawners\EnemiesSpawner.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehavioursAttacher\Player.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Assets\Scripts\Collectables\HealthPotion.cs" />
     <Compile Include="Assets\Scripts\Bar Systems\FirePower.cs" />
     <Compile Include="Assets\Scripts\UIScripts\WinLoseMenuUI.cs" />
+    <Compile Include="Assets\Scripts\Spawners\EnemyPooler.cs" />
     <Compile Include="Assets\Scripts\GameManagers\DropSystem.cs" />
     <Compile Include="Assets\Scripts\Traps\WaterTrap.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\PlayerActionNodes\IdleLeaf.cs" />

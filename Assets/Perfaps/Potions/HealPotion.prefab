@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 3960890848662684637}
   - component: {fileID: 4611310361741018187}
   - component: {fileID: 6335880130589305534}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

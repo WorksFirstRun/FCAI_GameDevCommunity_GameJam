@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 6356175330480111036}
   - component: {fileID: 324925944115520791}
   - component: {fileID: 5855657836246407356}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WaterBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,6 @@ MonoBehaviour:
   damageAmount: 20
   decreaseTheFirePower: 1
   desiredDamageableObject: 1
-  _collider2D: {fileID: 5855657836246407356}
 --- !u!70 &5855657836246407356
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

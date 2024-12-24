@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 3673302279161268109}
   - component: {fileID: 5329082695583754532}
   - component: {fileID: 7587475717192975744}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WaterTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
