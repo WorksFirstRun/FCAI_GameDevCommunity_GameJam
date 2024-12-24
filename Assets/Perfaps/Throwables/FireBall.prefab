@@ -222,3 +222,4 @@ MonoBehaviour:
   damageAmount: 40
   decreaseTheFirePower: 0
   desiredDamageableObject: 0
+  explosionSoundType: 4

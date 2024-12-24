@@ -48,6 +48,7 @@
     <Compile Include="Assets\Transitions\Nearmint Studios\Mask Transitions\Scripts\TransitionManager.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\PlayerActionNodes\DashLeaf.cs" />
     <Compile Include="Assets\Scripts\Heal_Health\PlayerHealth.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\AudioSettingsUI.cs" />
     <Compile Include="Assets\Transitions\Nearmint Studios\Mask Transitions\Demo\SceneSwitch.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\PlayerActionNodes\ReleaseSpellLeaf.cs" />
     <Compile Include="Assets\Scripts\AnimationScripts\DarkSamuraiAnimationsVisuals.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Assets\Scripts\Mechanics\BehavioursAttacher\Enemies\FireDemon.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehavioursAttacher\EnemyBaseAttacher.cs" />
     <Compile Include="Assets\Scripts\InputSystem\InputMap.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\HowToPlayMenuScript.cs" />
     <Compile Include="Assets\Scripts\Heal_Health\BossHealth.cs" />
     <Compile Include="Assets\ScriptableObjects\LootSO.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehavioursAttacher\Enemies\WaterWitch.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Assets\Scripts\UIScripts\UIBars.cs" />
     <Compile Include="Assets\ScriptableObjects\SoundSO.cs" />
     <Compile Include="Assets\Scripts\AnimationScripts\FireDemonAnimationsVisuals.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\OnSceneEntered.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\BehaviourTree.cs" />
     <Compile Include="Assets\Scripts\UIScripts\EnemysUIBar.cs" />
     <Compile Include="Assets\Scripts\CameraAdjustment\ZoomIn_OutCamera.cs" />
@@ -92,6 +95,7 @@
     <Compile Include="Assets\Scripts\Collectables\FireCharge.cs" />
     <Compile Include="Assets\Scripts\GameManagers\GameStateManager.cs" />
     <Compile Include="Assets\Scripts\Mechanics\BehaviouralTree\EnemyAi_ActionNodes\Enemy_IdleActionNode.cs" />
+    <Compile Include="Assets\Scripts\GameManagers\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\Collectables\HealthPotion.cs" />
     <Compile Include="Assets\Scripts\Bar Systems\FirePower.cs" />
     <Compile Include="Assets\Scripts\UIScripts\WinLoseMenuUI.cs" />
@@ -102,6 +106,7 @@
     <Compile Include="Assets\Scripts\Mechanics\BehavioursAttacher\Enemies\DarkSamurai.cs" />
     <Compile Include="Assets\Scripts\UIScripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\Heal_Health\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\OnButtonHover.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Tileset\Dungeon Tale\Assets\Materials\INFO.txt" />

@@ -15,4 +15,38 @@ MonoBehaviour:
   clipsWithMatchingName:
   - clips:
     - {fileID: 8300000, guid: 560c4630b920577429ce9a27503de8dc, type: 3}
+    - {fileID: 8300000, guid: 48a5d69d9a6957142a83ba9526a276f8, type: 3}
     clipName: 0
+  - clips:
+    - {fileID: 8300000, guid: 97f10cbcd8e96e14e9e861873e9a41b5, type: 3}
+    clipName: 1
+  - clips:
+    - {fileID: 8300000, guid: cf64e6e462af2ef47a81de8abf621a94, type: 3}
+    clipName: 2
+  - clips:
+    - {fileID: 8300000, guid: cdfff2cf6531be94aa9c1c20c535347b, type: 3}
+    clipName: 3
+  - clips:
+    - {fileID: 8300000, guid: 4e1efe11eb111a14188cef801b49ccb1, type: 3}
+    clipName: 4
+  - clips:
+    - {fileID: 8300000, guid: 59d9ee33354275f4fb01b757a099b8e7, type: 3}
+    clipName: 5
+  - clips:
+    - {fileID: 8300000, guid: 3e59981905bdaa44cb6ce67605001676, type: 3}
+    clipName: 6
+  - clips:
+    - {fileID: 8300000, guid: 1662f0309e89d2744bb81b3d32db13ee, type: 3}
+    clipName: 7
+  - clips:
+    - {fileID: 8300000, guid: 3bf2724c206a9da4397f96e08a1eb297, type: 3}
+    clipName: 8
+  - clips:
+    - {fileID: 8300000, guid: 07065803109da8742908f035329387e9, type: 3}
+    clipName: 9
+  - clips:
+    - {fileID: 8300000, guid: cb5221480ca1603498c7033ed0606417, type: 3}
+    clipName: 10
+  - clips:
+    - {fileID: 8300000, guid: f2b90c334332ca84bb44484f32a7e496, type: 3}
+    clipName: 11

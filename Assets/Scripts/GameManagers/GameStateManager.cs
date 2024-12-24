@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InputManager.Instance.onEscapeAction += TogglePauseGame;
+        MusicPlayer.ActivateTheMusic();
     }
 
     public void TogglePauseGame() // some buttons use it I can't make it private
@@ -82,6 +83,7 @@ public class GameManager : MonoBehaviour
     public void DeclarePlayerLost()
     {
         lose = true;
+        MusicPlayer.DisableTheMusic();
         Time.timeScale = 0;
         OnHideAnyOtherUi?.Invoke();
         InputManager.Instance.DisableInput();
@@ -92,6 +94,7 @@ public class GameManager : MonoBehaviour
     public void DeclarePlayerWon()
     {
         win = true;
+        MusicPlayer.DisableTheMusic();
         Time.timeScale = 0;
         OnHideAnyOtherUi?.Invoke();
         InputManager.Instance.DisableInput();

@@ -11,6 +11,7 @@ public class FireBall : MonoBehaviour
     [SerializeField] private float damageAmount;
     [SerializeField] private bool decreaseTheFirePower;
     [SerializeField] private collidedTags desiredDamageableObject;
+    [SerializeField] private ClipName explosionSoundType;
     private Transform caster;
     private bool isDamaged;
     
@@ -55,6 +56,7 @@ public class FireBall : MonoBehaviour
         
         rb.velocity = Vector2.zero;
         _animator.Play(EXPLOSION,0);
+        SoundManager.PlaySound(explosionSoundType,transform.position);
         Destroy(gameObject,destroyDelayTime);
     }
 }

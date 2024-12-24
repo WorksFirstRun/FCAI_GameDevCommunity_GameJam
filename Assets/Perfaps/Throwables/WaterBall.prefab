@@ -187,6 +187,7 @@ MonoBehaviour:
   damageAmount: 20
   decreaseTheFirePower: 1
   desiredDamageableObject: 1
+  explosionSoundType: 9
 --- !u!70 &5855657836246407356
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
